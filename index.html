@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud | Dağıtık Bulut İzleme & Orkestrasyon Panosu</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="cloud-shell">
+    
+    <!-- Üst Kurumsal Navigasyon -->
+    <header class="shell-topbar">
+      <div class="brand-cluster">
+        <div class="cloud-logo">☁️</div>
+        <div>
+          <h1>NexusCloud <span class="env-tag">PROD-EU-CENTRAL-1</span></h1>
+          <p class="sys-sub">Bulut Altyapı İzleme, Metrikler ve Konteyner Orkestrasyonu</p>
+        </div>
+      </div>
+
+      <div class="global-actions">
+        <div class="metric-pill">
+          <span class="pulse-dot"></span>
+          <span>Sistem Sağlığı: <strong id="cluster-health">99.98%</strong></span>
+        </div>
+        <button id="global-alert-btn" class="btn warning-glow">🚨 Acil Durum Simüle Et</button>
+        <button id="export-report-btn" class="btn primary-glow">📥 Sistem Raporu (.json)</button>
+      </div>
+    </header>
+
+    <!-- Ana Bento-Grid Konsol -->
+    <main class="console-grid">
+
+      <!-- MODÜL 1: Canlı Zaman Serisi Metrikler (CPU, RAM, Network) -->
+      <section class="console-card metrics-module">
+        <div class="card-header">
+          <h2>📈 Canlı Kaynak Kullanımı (Zaman Serisi)</h2>
+          <div class="metrics-legend">
+            <span class="legend-item"><i class="dot cpu"></i> CPU</span>
+            <span class="legend-item"><i class="dot ram"></i> RAM</span>
+            <span class="legend-item"><i class="dot net"></i> Ağ Trafiği</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="metrics-canvas" width="800" height="220"></canvas>
+        </div>
+
+        <div class="metrics-summary-grid">
+          <div class="sum-box">
+            <span class="sum-title">CPU Kullanımı</span>
+            <span class="sum-val" id="val-cpu">34.2%</span>
+          </div>
+          <div class="sum-box">
+            <span class="sum-title">Bellek (RAM)</span>
+            <span class="sum-val" id="val-ram">6.8 GB / 16 GB</span>
+          </div>
+          <div class="sum-box">
+            <span class="sum-title">Aktif İstek (RPS)</span>
+            <span class="sum-val" id="val-rps">1,420 req/s</span>
+          </div>
+          <div class="sum-box">
+            <span class="sum-title">Gecikme (Latency)</span>
+            <span class="sum-val" id="val-latency">24 ms</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODÜL 2: Konteyner & Mikroservis Orkestrasyon Matrisi -->
+      <section class="console-card cluster-module">
+        <div class="card-header">
+          <h2>🐳 Kubernetes Pod / Mikroservis Kümesi</h2>
+          <button id="add-pod-btn" class="btn ghost small">+ Pod Ölçeklendir</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="cluster-table">
+            <thead>
+              <tr>
+                <th>Servis Adı</th>
+                <th>İmaj (Image)</th>
+                <th>Replika</th>
+                <th>CPU / RAM</th>
+                <th>Durum</th>
+                <th>Aksiyonlar</th>
+              </tr>
+            </thead>
+            <tbody id="cluster-tbody">
+              <!-- JS ile doldurulacak -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MODÜL 3: Gerçek Zamanlı Dağıtık Log Akış Konsolu -->
+      <section class="console-card logs-module">
+        <div class="card-header">
+          <h2>🪵 Canlı Dağıtık Log Akışı (Log Streamer)</h2>
+          <div class="log-controls">
+            <select id="log-filter">
+              <option value="ALL">Tüm Seviyeler</option>
+              <option value="INFO">INFO</option>
+              <option value="WARN">WARN</option>
+              <option value="ERROR">ERROR</option>
+            </select>
+            <button id="clear-logs" class="btn ghost small">Temizle</button>
+          </div>
+        </div>
+
+        <div class="terminal-box" id="terminal-logs">
+          <!-- Canlı log akışı buraya düşecek -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
